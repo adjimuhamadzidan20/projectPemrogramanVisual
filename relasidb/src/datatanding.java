@@ -27,19 +27,19 @@ public class datatanding extends javax.swing.JFrame {
         tampilcb_cabang();
         tampilcb_pelatih();
     }
-    
     private void reset(){
-        id_tanding.setText("");
-        fnamaanggota.setText("");
-        cb_anggota.setSelectedItem("");
-        cb_cabang.setSelectedItem("");
-        cb_pelatih.setSelectedItem("");
-        fnamacabang.setText("");
-        fnamapelatih.setText("");
-        jadwal_tanding.setText("");
-        nama_tanding.setText("");
-    }
+    id_tanding.setText("");
+    fnamaanggota.setText("");
+    cb_anggota.setSelectedItem("");
+    cb_cabang.setSelectedItem("");
+    cb_pelatih.setSelectedItem("");
+    fnamacabang.setText("");
+    fnamapelatih.setText("");
+    jadwal_tanding.setText("");
+    nama_tanding.setText("");
+    fcari.setText("");
     
+}
     private void showData(){
         DefaultTableModel tabel = new DefaultTableModel();
         tabel.addColumn("ID Tanding");
@@ -64,6 +64,7 @@ public class datatanding extends javax.swing.JFrame {
                          +"data_cabang.id_cabang = data_tanding.id_cabang "
                          +"AND " 
                          +"data_pelatih.id_pelatih = data_tanding.id_pelatih";
+            
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while(rs.next()){
@@ -77,6 +78,48 @@ public class datatanding extends javax.swing.JFrame {
                 });
                 tab_tanding.setModel(tabel);
             }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+    private void cari(){
+        DefaultTableModel tabel = new DefaultTableModel();
+        tabel.addColumn("ID Tanding");
+        tabel.addColumn("Nama Anggota");
+        tabel.addColumn("Nama Cabang");
+        tabel.addColumn("Nama Pelatih");
+        tabel.addColumn("Jadwal Tanding");
+        tabel.addColumn("Nama Tanding");
+        
+        try {
+            String sql = "SELECT id_tanding,  "
+                    + "data_anggota.nama_anggota, "
+                    + "data_cabang.nama_cabang, "
+                    + "data_pelatih.nama_pelatih,"
+                    + "jadwal_tanding, nama_tanding "
+                    + "FROM data_anggota, data_cabang, data_pelatih, data_tanding "
+                    + "WHERE "
+                    + "data_anggota.id_anggota = data_tanding.id_anggota "
+                    + "AND "
+                    + "data_cabang.id_cabang = data_tanding.id_cabang "
+                    + "AND "
+                    + "data_pelatih.id_pelatih = data_tanding.id_pelatih "
+                    + "AND "
+                    + "data_tanding.id_tanding= "+fcari.getText();
+            Connection conn = (Connection)koneksi.konek();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next())
+                 tabel.addRow(new Object[]{
+                rs.getString(1),
+                rs.getString(2),
+                rs.getString(3),
+                rs.getString(4),
+                rs.getString(5),
+                rs.getString(6),
+            });
+            tab_tanding.setModel(tabel);
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -109,9 +152,16 @@ public class datatanding extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         nama_tanding = new javax.swing.JTextField();
+        btn_ubah = new javax.swing.JButton();
+        btn_hapus = new javax.swing.JButton();
+        listcari = new javax.swing.JComboBox<>();
+        fcari = new javax.swing.JTextField();
+        cari = new javax.swing.JButton();
         btn_cetak = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Data Tanding");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(51, 255, 255));
 
@@ -157,6 +207,11 @@ public class datatanding extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tab_tanding.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tab_tandingMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tab_tanding);
 
         cb_pelatih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih ID Pelatih --" }));
@@ -188,6 +243,29 @@ public class datatanding extends javax.swing.JFrame {
 
         jLabel10.setText("Nama Pertandingan");
 
+        btn_ubah.setText("Update");
+        btn_ubah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ubahActionPerformed(evt);
+            }
+        });
+
+        btn_hapus.setText("Delete");
+        btn_hapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_hapusActionPerformed(evt);
+            }
+        });
+
+        listcari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID Tanding" }));
+
+        cari.setText("Cari");
+        cari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cariActionPerformed(evt);
+            }
+        });
+
         btn_cetak.setText("Cetak");
         btn_cetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,9 +278,12 @@ public class datatanding extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(483, 483, 483))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,44 +308,44 @@ public class datatanding extends javax.swing.JFrame {
                                     .addComponent(jadwal_tanding)
                                     .addComponent(cb_pelatih, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cb_cabang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cb_anggota, 0, 166, Short.MAX_VALUE)))
+                                    .addComponent(cb_anggota, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nama_tanding)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(483, 483, 483))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_cetak)
-                .addContainerGap())
+                                .addComponent(nama_tanding, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btn_ubah)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_hapus)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_cetak)
+                                .addGap(354, 354, 354)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(listcari, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(fcari, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(cari))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 767, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(1, 1, 1)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(id_tanding, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 43, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_cetak)
-                        .addGap(85, 85, 85))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(id_tanding, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(cb_anggota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addComponent(fnamaanggota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -295,8 +376,22 @@ public class datatanding extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_simpan)
-                            .addComponent(btn_reset))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(btn_reset)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(listcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btn_ubah)
+                                        .addComponent(btn_hapus)
+                                        .addComponent(btn_cetak)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cari, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -335,7 +430,7 @@ public class datatanding extends javax.swing.JFrame {
                     PreparedStatement st = conn.prepareStatement(sql);
                     st.execute();
                     
-                    JOptionPane.showMessageDialog(null, "Data tanding berhasil ditambahkan","Informasi",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Pendaftaran berhasil","Informasi",JOptionPane.INFORMATION_MESSAGE);
                     showData();
                     reset();
                 } catch (Exception e) {
@@ -408,15 +503,95 @@ public class datatanding extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cb_pelatihItemStateChanged
 
-    // cetak data
+    private void btn_ubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ubahActionPerformed
+        // TODO add your handling code here:
+        idtanding = id_tanding.getText();
+        idanggota = (String) cb_anggota.getSelectedItem();
+        idcabang = (String)cb_cabang.getSelectedItem();
+        idpelatih = (String)cb_pelatih.getSelectedItem();
+        jadwal = jadwal_tanding.getText();
+        nama = nama_tanding.getText();
+        
+        if(idtanding.equals("") || idanggota.equals("") || idcabang.equals("") || idpelatih.equals("") || jadwal.equals("") || nama.equals("")){
+            JOptionPane.showMessageDialog(null, "Form tidak boleh kosong" , "Informasi",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            int konfir = JOptionPane.showConfirmDialog(null, "Simpan data ? ","Konfirmasi",JOptionPane.YES_NO_OPTION);
+            if (konfir == 0 ){
+                try {
+                    String sql = "UPDATE data_tanding SET jadwal_tanding= ' " +jadwal+ " ' , "
+                            + "nama_tanding = ' " +nama+ " ' WHERE data_tanding.id_tanding="+idtanding;
+                    PreparedStatement st = conn.prepareStatement(sql);
+                    st.execute();
+                    
+                    JOptionPane.showMessageDialog(null, "Data Berhasil Diubah!");
+                    showData();
+                    reset();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_btn_ubahActionPerformed
+
+    private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
+        // TODO add your handling code here:
+        idtanding = id_tanding.getText();
+        
+        if(idtanding.equals("")){
+            JOptionPane.showMessageDialog(null, "Silahkan pilih data yang akan dihapus","Information",JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            int konfir = JOptionPane.showConfirmDialog(null, "Simpan Data ? ","Konfirmasi",JOptionPane.YES_NO_OPTION);
+            if(konfir == 0){
+                try {
+                    String sql = "DELETE FROM data_tanding WHERE id_tanding="+idtanding;
+                    PreparedStatement st = conn.prepareStatement(sql);
+                    st.executeUpdate();
+                    
+                    JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+                    showData();
+                    reset();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                }
+            }
+        }
+    }//GEN-LAST:event_btn_hapusActionPerformed
+
+    private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
+        // TODO add your handling code here:
+        cari();
+        reset();
+    }//GEN-LAST:event_cariActionPerformed
+
+    private void tab_tandingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_tandingMouseClicked
+        // TODO add your handling code here:
+        int no = tab_tanding.rowAtPoint(evt.getPoint());
+        
+        String idtanding = tab_tanding.getValueAt(no, 0).toString();
+        id_tanding.setText(idtanding);
+        String idanggota = tab_tanding.getValueAt(no, 1).toString();
+        fnamaanggota.setText(idanggota);
+        String idcabang = tab_tanding.getValueAt(no, 2).toString();
+        fnamacabang.setText(idcabang);
+        String idpelatih = tab_tanding.getValueAt(no, 3).toString();
+        fnamapelatih.setText(idpelatih);
+        String jadwal = tab_tanding.getValueAt(no, 4).toString();
+        jadwal_tanding.setText(jadwal);
+        String nama = tab_tanding.getValueAt(no, 5).toString();
+        nama_tanding.setText(nama);
+    }//GEN-LAST:event_tab_tandingMouseClicked
+
     private void btn_cetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cetakActionPerformed
         try {
             JasperPrint JP = JasperFillManager.fillReport(getClass().getResourceAsStream("data_tanding.jasper"),
-            null, koneksi.konek());
-            
+                null, koneksi.konek());
+
             JasperViewer.viewReport(JP);
         }
-        
+
         catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -513,11 +688,15 @@ public class datatanding extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cetak;
+    private javax.swing.JButton btn_hapus;
     private javax.swing.JButton btn_reset;
     private javax.swing.JButton btn_simpan;
+    private javax.swing.JButton btn_ubah;
+    private javax.swing.JButton cari;
     private javax.swing.JComboBox<String> cb_anggota;
     private javax.swing.JComboBox<String> cb_cabang;
     private javax.swing.JComboBox<String> cb_pelatih;
+    private javax.swing.JTextField fcari;
     private javax.swing.JTextField fnamaanggota;
     private javax.swing.JTextField fnamacabang;
     private javax.swing.JTextField fnamapelatih;
@@ -535,6 +714,7 @@ public class datatanding extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jadwal_tanding;
+    private javax.swing.JComboBox<String> listcari;
     private javax.swing.JTextField nama_tanding;
     private javax.swing.JTable tab_tanding;
     // End of variables declaration//GEN-END:variables
