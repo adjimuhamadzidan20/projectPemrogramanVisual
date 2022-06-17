@@ -235,11 +235,14 @@ public class Menu extends javax.swing.JFrame {
             dispose();
         }     
          
-    }//GEN-LAST:event_btnLogoutActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
+    }
+    
+     // button daftar pelatih
+    private void daftarPelatihActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        new formPelatih().setVisible(true);
+        dispose();
+    } 
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

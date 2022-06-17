@@ -23,6 +23,7 @@ public class formCabang extends javax.swing.JFrame {
         inputJadwal.setText("");
     }
     
+    // menampilkan isi data
     private void showData() {
         DefaultTableModel tabel = new DefaultTableModel();
         tabel.addColumn("ID");
@@ -313,19 +314,31 @@ public class formCabang extends javax.swing.JFrame {
         jmlAnggota = inputJmlAnggota.getText();
         jadwalLatihan = inputJadwal.getText();
         
-        try {
-            String sql = "INSERT INTO cabang VALUES ('"+id+"','"+namaCabang+"','"+penanggungJawab+"','"+jmlAnggota+"','"+jadwalLatihan+"')";
-            java.sql.Connection conn = (Connection)koneksi.konek();
-            java.sql.PreparedStatement stat = conn.prepareStatement(sql);
-            stat.execute();
-            
-            JOptionPane.showMessageDialog(null, "Pendaftaran Cabang berhasil", "Informasi", JOptionPane.INFORMATION_MESSAGE);
-            showData();
-            reset();
+        // mengecek jika kolom input masih kosong
+        if(id.equals("") || id.equals("") || namaCabang.equals("") || penanggungJawab.equals("") || jmlAnggota.equals("") || jadwalLatihan.equals("")) {
+            JOptionPane.showMessageDialog(null, "Form tidak boleh kosong", "Informasi", JOptionPane.WARNING_MESSAGE);
         }
         
-        catch(Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+        else {
+            // konfirmasi
+            int konfir = JOptionPane.showConfirmDialog(null, "Simpan data?", "Konfimasi", JOptionPane.YES_NO_OPTION);
+            
+            if(konfir == 0) {
+                try {
+                    String sql = "INSERT INTO cabang VALUES ('"+id+"','"+namaCabang+"','"+penanggungJawab+"','"+jmlAnggota+"','"+jadwalLatihan+"')";
+                    java.sql.Connection conn = (Connection)koneksi.konek();
+                    java.sql.PreparedStatement stat = conn.prepareStatement(sql);
+                    stat.execute();
+
+                    JOptionPane.showMessageDialog(null, "Pendaftaran Cabang berhasil", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    showData();
+                    reset();
+                }
+
+                catch(Exception e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                }
+            }
         }
         
     }//GEN-LAST:event_btnSimpanActionPerformed

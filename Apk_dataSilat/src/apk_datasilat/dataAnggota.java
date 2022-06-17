@@ -5,7 +5,11 @@ import javax.swing.*;
 import java.awt.*;
 import javax.swing.table.DefaultTableModel;
 import koneksi.koneksi;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
+// by adji muhamad zidan
 public class dataAnggota extends javax.swing.JFrame {
     // var kolom input
     String id;
@@ -127,6 +131,7 @@ public class dataAnggota extends javax.swing.JFrame {
         inputCari = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         listCari = new javax.swing.JComboBox<>();
+        btnCetakdata = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabelAnggota = new javax.swing.JTable();
 
@@ -256,6 +261,17 @@ public class dataAnggota extends javax.swing.JFrame {
 
         listCari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nama", "JK", "Cabang", "Sabuk" }));
 
+        btnCetakdata.setBackground(new java.awt.Color(0, 153, 153));
+        btnCetakdata.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnCetakdata.setForeground(new java.awt.Color(255, 255, 255));
+        btnCetakdata.setText("Cetak Data");
+        btnCetakdata.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
+        btnCetakdata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCetakdataActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -284,10 +300,6 @@ public class dataAnggota extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel23)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(listCari, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -295,7 +307,17 @@ public class dataAnggota extends javax.swing.JFrame {
                         .addComponent(inputCari, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCari, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnKembali, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCetakdata, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                                .addGap(145, 145, 145)
+                                .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(21, 21, 21))
         );
         jPanel8Layout.setVerticalGroup(
@@ -325,7 +347,8 @@ public class dataAnggota extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCetakdata, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -490,6 +513,21 @@ public class dataAnggota extends javax.swing.JFrame {
         inputSabuk.setText(sabuk);
               
     }//GEN-LAST:event_tabelAnggotaMouseClicked
+    
+    // cetak data / report
+    private void btnCetakdataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakdataActionPerformed
+        try {
+            JasperPrint JP = JasperFillManager.fillReport(getClass().getResourceAsStream("data_anggota.jasper"),
+            null, koneksi.konek());
+
+            JasperViewer.viewReport(JP);
+        }
+        
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "cetak data gagal", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        }  
+        
+    }//GEN-LAST:event_btnCetakdataActionPerformed
 
     public static void main(String args[]) {
         /* Create and display the form */
@@ -502,6 +540,7 @@ public class dataAnggota extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCari;
+    private javax.swing.JButton btnCetakdata;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnKembali;
     private javax.swing.JButton btnUpdate;
