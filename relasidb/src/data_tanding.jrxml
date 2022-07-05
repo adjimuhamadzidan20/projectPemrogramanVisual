@@ -16,21 +16,25 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="89" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="660" height="29"/>
-				<textElement textAlignment="Center">
+				<reportElement x="70" y="0" width="590" height="29"/>
+				<textElement>
 					<font fontName="Segoe UI" size="20"/>
 				</textElement>
 				<text><![CDATA[Perguruan Pencak Silat]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="29" width="660" height="29"/>
-				<textElement textAlignment="Center">
+				<reportElement x="70" y="29" width="590" height="29"/>
+				<textElement>
 					<font fontName="Segoe UI" size="20"/>
 				</textElement>
 				<text><![CDATA[Satria Bangsa]]></text>
 			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="63" height="60"/>
+				<imageExpression><![CDATA["E:\\CodingJava\\relasidb\\src\\image_asset\\logologin.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

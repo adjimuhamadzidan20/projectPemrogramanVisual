@@ -15,21 +15,25 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="83" splitType="Stretch">
+		<band height="92" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="30"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
+				<reportElement x="73" y="0" width="482" height="30"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Segoe UI" size="20"/>
 				</textElement>
 				<text><![CDATA[Perguruan Pencak Silat]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="30" width="555" height="30"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
+				<reportElement x="73" y="30" width="482" height="30"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Segoe UI" size="20"/>
 				</textElement>
 				<text><![CDATA[Satria Bangsa]]></text>
 			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="63" height="60"/>
+				<imageExpression><![CDATA["E:\\CodingJava\\relasidb\\src\\image_asset\\logologin.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -121,6 +125,6 @@
 		<band height="54" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="52" splitType="Stretch"/>
 	</summary>
 </jasperReport>
