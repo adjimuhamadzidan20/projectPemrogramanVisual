@@ -12,32 +12,49 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        btnLogout = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         pendaftaran = new javax.swing.JToggleButton();
-        pendaftaranCabang = new javax.swing.JToggleButton();
         dataAnggota = new javax.swing.JToggleButton();
+        pendaftaranCabang = new javax.swing.JToggleButton();
         dataCabang = new javax.swing.JToggleButton();
-        daftarKeuangan = new javax.swing.JToggleButton();
         daftarPelatih = new javax.swing.JToggleButton();
         dataPelatih = new javax.swing.JToggleButton();
-        btnLogout = new javax.swing.JButton();
+        daftarKeuangan = new javax.swing.JToggleButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-
-        jLabel1.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel1.setText("Selamat Datang Di aplikasi Manajemen Data Internal");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/WhatsApp_Image_2022-05-26_at_2.14.39_PM-removebg-preview.png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel2.setText("Perguruan Pencak Silat Satria Bangsa");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, -1, -1));
 
-        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        btnLogout.setBackground(new java.awt.Color(255, 255, 255));
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/exit.png"))); // NOI18N
+        btnLogout.setText("Log Out");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 440, -1, 40));
 
+        jPanel1.setBackground(new java.awt.Color(0, 204, 255));
+
+        pendaftaran.setBackground(new java.awt.Color(255, 255, 255));
+        pendaftaran.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/daftar.png"))); // NOI18N
         pendaftaran.setText("Pendaftaran");
         pendaftaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -45,13 +62,8 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        pendaftaranCabang.setText("Pendaftaran Cabang Baru");
-        pendaftaranCabang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pendaftaranCabangActionPerformed(evt);
-            }
-        });
-
+        dataAnggota.setBackground(new java.awt.Color(255, 255, 255));
+        dataAnggota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/anggota.png"))); // NOI18N
         dataAnggota.setText("Data Anggota");
         dataAnggota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,6 +71,17 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        pendaftaranCabang.setBackground(new java.awt.Color(255, 255, 255));
+        pendaftaranCabang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/daftar.png"))); // NOI18N
+        pendaftaranCabang.setText("Pendaftaran Cabang");
+        pendaftaranCabang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pendaftaranCabangActionPerformed(evt);
+            }
+        });
+
+        dataCabang.setBackground(new java.awt.Color(255, 255, 255));
+        dataCabang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/cabang.png"))); // NOI18N
         dataCabang.setText("Data Cabang");
         dataCabang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,15 +89,17 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        daftarKeuangan.setText("Daftar Keuangan");
-        daftarKeuangan.addActionListener(new java.awt.event.ActionListener() {
+        daftarPelatih.setBackground(new java.awt.Color(255, 255, 255));
+        daftarPelatih.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/daftar.png"))); // NOI18N
+        daftarPelatih.setText("Pendaftaran Pelatih");
+        daftarPelatih.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                daftarKeuanganActionPerformed(evt);
+                daftarPelatihActionPerformed(evt);
             }
         });
 
-        daftarPelatih.setText("Daftar Pelatih Baru");
-
+        dataPelatih.setBackground(new java.awt.Color(255, 255, 255));
+        dataPelatih.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/coch.png"))); // NOI18N
         dataPelatih.setText("Data Pelatih");
         dataPelatih.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,49 +107,12 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pendaftaran, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dataAnggota)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pendaftaranCabang)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dataCabang)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(daftarKeuangan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(daftarPelatih)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dataPelatih, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(dataPelatih, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(daftarPelatih, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                            .addComponent(dataAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pendaftaran, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pendaftaranCabang, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dataCabang, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(daftarKeuangan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-        );
-
-        btnLogout.setText("Log Out");
-        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+        daftarKeuangan.setBackground(new java.awt.Color(255, 255, 255));
+        daftarKeuangan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/duit.png"))); // NOI18N
+        daftarKeuangan.setText("Daftar Keuangan");
+        daftarKeuangan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogoutActionPerformed(evt);
+                daftarKeuanganActionPerformed(evt);
             }
         });
 
@@ -132,58 +120,46 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnLogout)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(198, 198, 198))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(268, 268, 268))))
+                    .addComponent(pendaftaran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dataAnggota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pendaftaranCabang, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(dataCabang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(daftarPelatih, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dataPelatih, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(daftarKeuangan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 291, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(28, 28, 28)
-                .addComponent(btnLogout)
-                .addContainerGap())
+                .addGap(72, 72, 72)
+                .addComponent(pendaftaran)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dataAnggota)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pendaftaranCabang)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dataCabang)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(daftarPelatih)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dataPelatih)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(daftarKeuangan)
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 480));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/bg.jpeg"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 500));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    // button pendaftaran
-    private void pendaftaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pendaftaranActionPerformed
-        // menuju halaman form pendaftaran
-        new formPendaftaran().setVisible(true);
-        dispose();
-        
-    }//GEN-LAST:event_pendaftaranActionPerformed
 
     // button pendaftaran cabang
     private void pendaftaranCabangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pendaftaranCabangActionPerformed
@@ -201,13 +177,34 @@ public class Menu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_dataAnggotaActionPerformed
 
-    // button data cabang
-    private void dataCabangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataCabangActionPerformed
-        // menuju halaman data cabang
-        new dataCabang().setVisible(true);
-        dispose();  
+    // button log out
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+       
+        // konfirmasi
+        int konfir = JOptionPane.showConfirmDialog(null, "Yakin ingin log out?", "Konfimasi", JOptionPane.YES_NO_OPTION);
         
-    }//GEN-LAST:event_dataCabangActionPerformed
+        if(konfir == 0) {
+            new loginPage().setVisible(true);
+            dispose();
+        }     
+         
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    // button pendaftaran
+    private void pendaftaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pendaftaranActionPerformed
+        // menuju halaman form pendaftaran
+        new formPendaftaran().setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_pendaftaranActionPerformed
+
+    // button data pelatih
+    private void dataPelatihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataPelatihActionPerformed
+        // menuju halaman data pelatih
+        new dataPelatih().setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_dataPelatihActionPerformed
 
     // button daftar keuangan
     private void daftarKeuanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftarKeuanganActionPerformed
@@ -216,33 +213,20 @@ public class Menu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_daftarKeuanganActionPerformed
 
-    // button data pelatih
-    private void dataPelatihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataPelatihActionPerformed
-        // menuju halaman data pelatih
-        new dataPelatih().setVisible(true);
-        dispose();
-        
-    }//GEN-LAST:event_dataPelatihActionPerformed
-
-    // button log out
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-       
-        // konfirmasi
-        int konfir = JOptionPane.showConfirmDialog(null, "Yakin ingin log out?", "Konfimasi", JOptionPane.YES_NO_OPTION);
-        
-        if(konfir == 0) {
-            new login().setVisible(true);
-            dispose();
-        }     
-         
-    }
-    
-     // button daftar pelatih
-    private void daftarPelatihActionPerformed(java.awt.event.ActionEvent evt) {                                              
+    // button daftar pelatih
+    private void daftarPelatihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftarPelatihActionPerformed
         new formPelatih().setVisible(true);
         dispose();
-    } 
-    
+    }//GEN-LAST:event_daftarPelatihActionPerformed
+
+    // button data cabang
+    private void dataCabangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataCabangActionPerformed
+        // menuju halaman data cabang
+        new dataCabang().setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_dataCabangActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -284,8 +268,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JToggleButton dataPelatih;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JToggleButton pendaftaran;
     private javax.swing.JToggleButton pendaftaranCabang;
     // End of variables declaration//GEN-END:variables
