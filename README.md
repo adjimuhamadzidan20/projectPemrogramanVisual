@@ -1,9 +1,6 @@
 # projectPemrogramanVisual
-project visual aplikasi pendataan organisasi perguruan pencak silat - java netbeans
+Project Visual Aplikasi Manajemen Data Internal Perguruan Pencak Silat Satria Bangsa - Java Netbeans
 Kelompok 03 - R6X
-
-Program :
-Aplikasi Manajemen Data Internal Perguruan Pencak Silat Satria Bangsa
 
 Anggota :
 - 201943501901_Hussein Asyari
@@ -16,20 +13,12 @@ Anggota :
 - 201943501947_Sifa Nur Febriani
 
 Jobdesk : 
-Coder/Backend
-Adji Muhamad Zidan
-Sifa Nur Febriani
+- Coder/Backend : Adji Muhamad Zidan | Sifa Nur Febriani
 
-Database
-Muhamad Bagas Himawan
+- Database : Muhamad Bagas Himawan
 
-Design/Frontend
-Dhimas Bagus Aryo Utomo
-Muhammad Alfis Syah
+- Design/Frontend : Dhimas Bagus Aryo Utomo | Muhammad Alfis Syah
 
-Testing
-Irsyad Fadhillah Mufti
+- Testing : Irsyad Fadhillah Mufti
 
-Data-Gambar-Logo/Icon
-Eka Santika Putri
-Hussein Asyari
+- Data-Gambar-Logo/Icon : Eka Santika Putri | Hussein Asyari
