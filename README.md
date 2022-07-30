@@ -1,4 +1,4 @@
-# projectPemrogramanVisual_Kelompok03_R6X
+# projectPemrogramanVisual_Kel03_R6X
 Project Visual Aplikasi Manajemen Data Internal Perguruan Pencak Silat Satria Bangsa - Java Netbeans
 
 Anggota :
