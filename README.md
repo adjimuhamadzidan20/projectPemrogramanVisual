@@ -1,6 +1,6 @@
 # projectPemrogramanVisual
 Project Visual Aplikasi Manajemen Data Internal Perguruan Pencak Silat Satria Bangsa - Java Netbeans
-Kelompok 03 - R6X
+- Kelompok 03 - R6X
 
 Anggota :
 - 201943501901_Hussein Asyari
